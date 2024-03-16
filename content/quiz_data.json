@@ -15,12 +15,12 @@
         "answer": "rasterline"
     },
     {
-        "question": "Millise tüübiseade on videokaart",
+        "question": "Millise tüübiseade on videokaart?",
         "options": ["sisend-tüüpiline", "väljund-tüüpiline", "sisend-väljund-tüüpiline"],
         "answer": "väljund-tüüpiline"
     },
     {
-        "question": "Mis on Html",
+        "question": "Mis on Html?",
         "options": ["programm", "arenduskeskkond", "märgistuskeel"],
         "answer": "märgistuskeel"
     }
