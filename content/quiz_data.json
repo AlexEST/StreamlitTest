@@ -1,0 +1,28 @@
+[
+    {
+        "question": "Mis on niinimetatud \"viimase lootuse tee\" (Default Gateway)?",
+        "options": ["192.168.10.1 255.255.255.0", "0.0.0.0 0.0.0.0", "\"Ctrl+Alt+Del\" kombinatsioon"],
+        "answer": "192.168.10.1 255.255.255.0"
+    },
+    {
+        "question": "Mis keel kasutab numbrite ja tähtede tähistamiseks sidekriipse ja punkte?",
+        "options": ["Python", "C++", "Morze"],
+        "answer": "Morze"
+    },
+    {
+        "question": "Milline graafika põhineb pikslitelt?",
+        "options": ["fraktaalne", "rasterline", "vektoriline"],
+        "answer": "rasterline"
+    },
+    {
+        "question": "Millise tüübiseade on videokaart",
+        "options": ["sisend-tüüpiline", "väljund-tüüpiline", "sisend-väljund-tüüpiline"],
+        "answer": "väljund-tüüpiline"
+    },
+    {
+        "question": "Mis on Html",
+        "options": ["programm", "arenduskeskkond", "märgistuskeel"],
+        "answer": "märgistuskeel"
+    }
+     
+]
