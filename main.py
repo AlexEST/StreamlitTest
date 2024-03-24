@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 
-
+# Команда запуска программы локально в терминале
 # python -m streamlit run main.py
 
 def run():
@@ -13,7 +13,7 @@ def run():
 if __name__ == "__main__":
     run()
 
-# Custom CSS for the buttons
+# CSS стили для кнопок
 st.markdown("""
 <style>
 div.stButton > button:first-child {
@@ -22,44 +22,46 @@ div.stButton > button:first-child {
 </style>
 """, unsafe_allow_html=True)
 
-# Initialize session variables if they do not exist
+# Переменные сессии
 default_values = {'current_index': 0, 'current_question': 0, 'score': 0, 'selected_option': None, 'answer_submitted': False}
 for key, value in default_values.items():
     st.session_state.setdefault(key, value)
 
-# Load quiz data
+# Загрузка вопросов из JSON
 with open('content/quiz_data.json', 'r', encoding='utf-8') as f:
     quiz_data = json.load(f)
 
+
+# перезапуск теста с вопросами
 def restart_quiz():
     st.session_state.current_index = 0
     st.session_state.score = 0
     st.session_state.selected_option = None
     st.session_state.answer_submitted = False
 
-
+# следующий вопрос
 def next_question():
     st.session_state.current_index += 1
     st.session_state.selected_option = None
     st.session_state.answer_submitted = False
 
-# Title and description
+# Заголовок
 st.title("TEST")
 
-# Progress bar
+# Строка прогресса
 progress_bar_value = (st.session_state.current_index + 1) / len(quiz_data)
 st.metric(label="Õiged vastused", value=f"{st.session_state.score} / {len(quiz_data)}")
 st.progress(progress_bar_value)
 
-# Display the question and answer options
+# Отображение вопроса 
 question_item = quiz_data[st.session_state.current_index]
 st.subheader(f"Küsimus {st.session_state.current_index + 1}")
 st.title(f"{question_item['question']}")
-# st.write(question_item['information'])
+
 
 st.markdown(""" ___""")
 
-# Answer selection
+# результат правильности ответа
 options = question_item['options']
 correct_answer = question_item['answer']
 
@@ -80,21 +82,22 @@ else:
 
 st.markdown(""" ___""")
 
+# обработка нажатияя кнопки подтверждения ответа
 def submit_answer():
 
-    # Check if an option has been selected
+    # проверка был ли выбран ответ
     if st.session_state.selected_option is not None:
-        # Mark the answer as submitted
+        # помечаем что ответ выбран в сессии
         st.session_state.answer_submitted = True
-        # Check if the selected option is correct
+        # проверка правильности ответа
         if st.session_state.selected_option == quiz_data[st.session_state.current_index]['answer']:
             st.session_state.score += 1
     else:
-        # If no option selected, show a message and do not mark as submitted
+        # Если не выбран никакой ответ выдаем ала
         st.warning("Palun valige vastus!")
 
 
-# Submission button and response logic
+# обработка кнопки далее
 if st.session_state.answer_submitted:
     if st.session_state.current_index < len(quiz_data) - 1:
         st.button('Järgmine', on_click=next_question)
